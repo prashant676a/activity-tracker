@@ -23,3 +23,8 @@ rails server
 # View API docs
 open http://localhost:3000/docs
 ```
+
+## 📖 Documentation
+
+- [Architecture Decisions](./ARCHITECTURE.md)
+- [API Docs](./API_DOCS.md)
