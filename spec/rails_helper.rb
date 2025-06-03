@@ -71,5 +71,27 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 
   # factorybot setup
-  config.include FactoryBot::Syntax::Method
+  config.include FactoryBot::Syntax::Methods
+
+  # Database cleaner setup for tests
+  config.before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+    DatabaseCleaner.strategy = :transaction
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
+end
+
+# Shoulda Matchers config
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
 end

@@ -47,3 +47,21 @@ This document captures key architectural decisions made during the development o
 2. **Database-per-tenant**: Overkill for current requirements
 
 ## System Architecture
+
+
+
+## Gem Selection Rationale
+
+### Discard (Soft Deletion)
+**1. Gem**: `discard` by Shopify
+**Reason**: 
+- Lightweight (single responsibility)
+- Production-tested at scale
+- Clean API that follows Rails conventions
+- Maintains referential integrity for audit trails
+
+**Alternative considered**: 
+- `paranoia` - More features but heavier and has some gotchas
+- Custom implementation - Would work but why reinvent a solved problem?
+
+This choice allows us to focus on the core business logic while using a well-tested solution for a common pattern.
