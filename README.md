@@ -1,24 +1,25 @@
-# README
+# Activity Tracker API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A high-performance, multi-tenant activity tracking system built with Rails 8.
 
-Things you may want to cover:
+[![Ruby](https://img.shields.io/badge/Ruby-3.2.2-red.svg)](https://www.ruby-lang.org)
+[![Rails](https://img.shields.io/badge/Rails-8.0.2-red.svg)](https://rubyonrails.org)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-blue.svg)](https://www.postgresql.org)
 
-* Ruby version
+## 🚀 Quick Start
 
-* System dependencies
+```bash
+# Clone and setup
+git clone git@github.com:prashant676a/activity-tracker.git
+cd activity_tracker
+bin/setup
 
-* Configuration
+# Run tests
+bundle exec rspec
 
-* Database creation
+# Start server
+rails server
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# View API docs
+open http://localhost:3000/docs
+```
