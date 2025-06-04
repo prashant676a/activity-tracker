@@ -47,13 +47,13 @@ This document captures key architectural decisions made during the development o
 2. **Database-per-tenant**: Overkill for current requirements
 
 ## System Architecture
-
+![ERD Diagram](image.png)
 
 
 ## Gem Selection Rationale
 
 ### Discard (Soft Deletion)
-**1. Gem**: `discard` by Shopify
+**1. Gem**: `discard` 
 **Reason**: 
 - Lightweight (single responsibility)
 - Production-tested at scale
@@ -65,3 +65,9 @@ This document captures key architectural decisions made during the development o
 - Custom implementation - Would work but why reinvent a solved problem?
 
 This choice allows us to focus on the core business logic while using a well-tested solution for a common pattern.
+
+### Acts as tenant (Multi Tenancy)
+**2. Gem**: `acts_as_tenant
+
+**Reason**:
+- perfect fit for Row level multitenancy.`
