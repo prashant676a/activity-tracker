@@ -53,3 +53,5 @@ group :development, :test do
 end
 
 gem "discard", "~> 1.4"
+
+gem "acts_as_tenant", "~> 1.0"
