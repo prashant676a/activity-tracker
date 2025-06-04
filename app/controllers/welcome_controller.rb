@@ -49,7 +49,7 @@ class WelcomeController < ApplicationController
       render json: {
         name: "Activity Tracker API",
         version: "1.0.0",
-        status: "operational",
+        status: "operational"
       }
     end
   end
