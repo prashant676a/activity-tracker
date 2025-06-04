@@ -14,7 +14,6 @@ class WelcomeController < ApplicationController
         version: "1.0.0",
         status: "operational",
         environment: Rails.env,
-        documentation: "/docs",
         health: "/up",
 
         # Include ready-to-use URLs for development
@@ -51,7 +50,6 @@ class WelcomeController < ApplicationController
         name: "Activity Tracker API",
         version: "1.0.0",
         status: "operational",
-        documentation: "/docs"
       }
     end
   end

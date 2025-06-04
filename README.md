@@ -20,8 +20,7 @@ bundle exec rspec
 # Start server
 rails server
 
-# View API docs
-open http://localhost:3000/docs
+open http://localhost:3000/
 ```
 
 ## 📖 Documentation

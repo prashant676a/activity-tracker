@@ -14,7 +14,7 @@ class ApplicationController < ActionController::API
 
   def public_endpoint?
     # Define public endpoints that don't require authentication
-    public_paths = [ "/", "/up", "/docs", "/api/v1/health" ]
+    public_paths = [ "/", "/up", "/api/v1/health" ]
     public_paths.include?(request.path)
   end
 
