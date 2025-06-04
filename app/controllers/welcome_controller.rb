@@ -1,5 +1,5 @@
 # app/controllers/welcome_controller.rb
-class WelcomeController < ActionController::API
+class WelcomeController < ApplicationController
   # Skip authentication for public endpoints
   skip_before_action :authenticate_request
   skip_before_action :set_tenant
