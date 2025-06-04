@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   root "welcome#index"
   namespace :api do
     namespace :v1 do
+      post "login", to: "sessions#create"
+      delete "logout", to: "sessions#destroy"
       namespace :admin do
         resources :activities, only: [ :index ] do
           collection do

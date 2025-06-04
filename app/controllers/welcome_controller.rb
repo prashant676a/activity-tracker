@@ -16,6 +16,20 @@ class WelcomeController < ApplicationController
         environment: Rails.env,
         health: "/up",
 
+        # Authentication endpoints
+        auth_endpoints: {
+          login: {
+            method: "POST",
+            url: "#{base_url}/api/v1/login",
+            example: "curl -X POST #{base_url}/api/v1/login -H 'Content-Type: application/json' -d '{\"email\":\"admin@techcorp.com\"}'"
+          },
+          logout: {
+            method: "DELETE", 
+            url: "#{base_url}/api/v1/logout",
+            example: "curl -X DELETE #{base_url}/api/v1/logout -H 'Authorization: Bearer dummy-token'"
+          }
+        },
+
         # Include ready-to-use URLs for development
         quick_links: {
           message: "Copy and paste these URLs in your browser (dev mode only):",
@@ -35,13 +49,20 @@ class WelcomeController < ApplicationController
         # Include curl examples
         examples: {
           curl: {
-            basic: "curl -H 'Authorization: Bearer dummy-token' #{base_url}/api/v1/admin/activities",
-            with_params: "curl -H 'Authorization: Bearer dummy-token' '#{base_url}/api/v1/admin/activities?per_page=10&page=1'"
+            login: "curl -X POST #{base_url}/api/v1/login -H 'Content-Type: application/json' -d '{\"email\":\"admin@techcorp.com\"}'",
+            activities: "curl -H 'Authorization: Bearer dummy-token' #{base_url}/api/v1/admin/activities",
+            logout: "curl -X DELETE #{base_url}/api/v1/logout -H 'Authorization: Bearer dummy-token'"
           },
 
           javascript: {
-            fetch: "fetch('#{base_url}/api/v1/admin/activities', { headers: { 'Authorization': 'Bearer dummy-token' } }).then(r => r.json()).then(console.log)"
+            login: "fetch('#{base_url}/api/v1/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: 'admin@techcorp.com' }) }).then(r => r.json()).then(console.log)",
+            fetch_activities: "fetch('#{base_url}/api/v1/admin/activities', { headers: { 'Authorization': 'Bearer dummy-token' } }).then(r => r.json()).then(console.log)"
           }
+        },
+
+        test_user: {
+          email: "admin@techcorp.com",
+          note: "Use this email to test login endpoint"
         }
       }
     else
