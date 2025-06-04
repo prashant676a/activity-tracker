@@ -6,20 +6,20 @@ FactoryBot.define do
     activity_type { 'login' }
     occurred_at { Time.current }
     metadata { {} }
-    
+
     # Ensure user and company match
     before(:create) do |activity|
       if activity.user && !activity.company
         activity.company = activity.user.company
       end
     end
-    
+
     Activity::ACTIVITY_TYPES.each do |type|
       trait type.to_sym do
         activity_type { type }
       end
     end
-    
+
     trait :with_metadata do
       metadata do
         {
@@ -29,15 +29,15 @@ FactoryBot.define do
         }
       end
     end
-    
+
     trait :recent do
       occurred_at { rand(1..24).hours.ago }
     end
-    
+
     trait :old do
       occurred_at { rand(1..12).months.ago }
     end
-    
+
     trait :with_sensitive_data do
       metadata do
         {

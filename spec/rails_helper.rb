@@ -45,6 +45,8 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
 
+  Dir[Rails.root.join("spec", "support", "**", "*.rb")].sort.each { |f| require f }
+
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
 
@@ -86,6 +88,9 @@ RSpec.configure do |config|
   config.after(:each) do
     DatabaseCleaner.clean
   end
+
+  # request spec
+  config.include ApiTestHelpers, type: :request
 end
 
 # Shoulda Matchers config

@@ -3,7 +3,7 @@ class User < ApplicationRecord
   include Discard::Model
   default_scope -> { kept }
 
-  belongs_to :company
+  acts_as_tenant :company
   has_many :activities, dependent: :restrict_with_error
 
   validates :email, presence: true,

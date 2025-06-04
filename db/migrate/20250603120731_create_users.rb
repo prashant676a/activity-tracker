@@ -11,8 +11,8 @@ class CreateUsers < ActiveRecord::Migration[8.0]
     end
 
     add_index :users, :email, unique: true
-    add_index :users, [:company_id, :email], unique: true
+    add_index :users, [ :company_id, :email ], unique: true
     add_index :users, :discarded_at
-    add_index :users, [:company_id, :role]
+    add_index :users, [ :company_id, :role ]
   end
 end

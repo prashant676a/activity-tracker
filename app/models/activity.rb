@@ -12,7 +12,7 @@ class Activity < ApplicationRecord
   # Override user association to include discarded users
   # This ensures activities remain intact even if user is soft-deleted
   belongs_to :user, -> { with_discarded }
-  belongs_to :company
+  acts_as_tenant :company
 
   validates :activity_type, presence: true, inclusion: { in: ACTIVITY_TYPES }
   validates :occurred_at, presence: true
