@@ -30,9 +30,9 @@ RSpec.describe ActivityTrackingJob, type: :job do
     it 'sets the correct tenant context' do
       # Create another company to ensure tenant isolation
       other_company = create(:company)
-      
+
       described_class.perform_now(activity_data)
-      
+
       # Verify activity was created for correct company
       expect(Activity.last.company).to eq(company)
       expect(Activity.where(company: other_company).count).to eq(0)
@@ -45,7 +45,7 @@ RSpec.describe ActivityTrackingJob, type: :job do
         metadata: {},
         occurred_at: Time.current
       }
-      
+
       expect {
         described_class.perform_now(invalid_data) rescue nil
       }.not_to change(Activity, :count)

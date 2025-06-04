@@ -24,7 +24,7 @@ class WelcomeController < ApplicationController
             example: "curl -X POST #{base_url}/api/v1/login -H 'Content-Type: application/json' -d '{\"email\":\"admin@techcorp.com\"}'"
           },
           logout: {
-            method: "DELETE", 
+            method: "DELETE",
             url: "#{base_url}/api/v1/logout",
             example: "curl -X DELETE #{base_url}/api/v1/logout -H 'Authorization: Bearer dummy-token'"
           }

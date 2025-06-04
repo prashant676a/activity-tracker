@@ -42,7 +42,7 @@ RSpec.describe ActivityTrackerService do
       it 'respects company tracking settings' do
         company.update(
           activity_tracking_config: {
-            enabled_activity_types: ['login']
+            enabled_activity_types: [ 'login' ]
           }
         )
 
@@ -115,12 +115,12 @@ RSpec.describe ActivityTrackerService do
 
       it 'logs errors' do
         allow(Activity).to receive(:create!).and_raise(StandardError, "Test error")
-        
+
         # Expect to receive error with a JSON string
         expect(Rails.logger).to receive(:error) do |json_string|
           # Verify it's valid JSON
           expect { JSON.parse(json_string) }.not_to raise_error
-          
+
           # Parse and check contents
           error_data = JSON.parse(json_string)
           expect(error_data['error']).to eq("Activity tracking failed")
@@ -161,7 +161,7 @@ RSpec.describe ActivityTrackerService do
 
   describe '.bulk_track' do
     let(:user2) { create(:user, company: company) }
-    
+
     it 'tracks multiple activities' do
       activities_data = [
         { user_id: user.id, activity_type: 'login', metadata: { bulk: true } },
@@ -191,7 +191,7 @@ RSpec.describe ActivityTrackerService do
       expect(result[:total]).to eq(3)
       expect(result[:succeeded]).to eq(1)  # Only login succeeds
       expect(result[:failed]).to eq(2)     # Other two fail
-      
+
       # Check the results array for specific failures
       expect(result[:results][0][:success]).to be true
       expect(result[:results][1][:success]).to be false

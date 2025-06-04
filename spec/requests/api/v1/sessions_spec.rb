@@ -43,7 +43,7 @@ RSpec.describe 'Sessions API', type: :request do
 
       it 'returns unauthorized' do
         post '/api/v1/login', params: { email: user.email }
-        
+
         expect(response).to have_http_status(:unauthorized)
         expect(Activity.count).to eq(0)
       end
@@ -93,10 +93,10 @@ RSpec.describe 'Sessions API', type: :request do
       # Login
       post '/api/v1/login', params: { email: user.email }
       expect(response).to have_http_status(:ok)
-      
+
       # Simulate some activity
       stub_authentication(user)
-      
+
       # Logout
       delete '/api/v1/logout', headers: api_headers
       expect(response).to have_http_status(:ok)
@@ -104,7 +104,7 @@ RSpec.describe 'Sessions API', type: :request do
       # Verify both activities
       activities = Activity.where(user: user).order(:occurred_at)
       expect(activities.count).to eq(2)
-      expect(activities.map(&:activity_type)).to eq(['login', 'logout'])
+      expect(activities.map(&:activity_type)).to eq([ 'login', 'logout' ])
     end
   end
 end

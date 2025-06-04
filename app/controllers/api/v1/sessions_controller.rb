@@ -8,7 +8,7 @@ module Api
       # POST /api/v1/login
       def create
         user = User.kept.includes(:company).find_by(email: params[:email])
-        
+
         if user.nil?
           render json: { error: "Invalid credentials" }, status: :unauthorized
           return
@@ -16,13 +16,13 @@ module Api
 
         # In a real app, verify password here
         # For assessment, just demonstrate the flow
-        
+
         # Track login activity - the service handles tenant setting
         ::ActivityTrackerService.track(
           user: user,
-          activity_type: 'login',
+          activity_type: "login",
           metadata: {
-            login_method: 'password'
+            login_method: "password"
           },
           request: request
         )
@@ -49,7 +49,7 @@ module Api
           # Track logout activity - the service handles tenant setting
           ::ActivityTrackerService.track(
             user: current_user,
-            activity_type: 'logout',
+            activity_type: "logout",
             metadata: {
               session_duration: calculate_session_duration
             },
